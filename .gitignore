@@ -27,4 +27,7 @@ Thumbs.db
 .idea/
 
 # Logs
-*.log
+*.log.bob/
+
+# Bob local config
+.bob/
