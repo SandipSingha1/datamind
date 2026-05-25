@@ -1,0 +1,16 @@
+name: datamind_analytics
+version: "1.0.0"
+config-version: 2
+
+profile: datamind_analytics
+
+model-paths: ["models"]
+target-path:  "target"
+clean-targets: ["target"]
+
+models:
+  datamind_analytics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

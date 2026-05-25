@@ -1,0 +1,13 @@
+datamind_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account:   SE58322-FRA00296
+      user:      DATAMIND_USER
+      password:  "DataMind@2026!"
+      role:      DATAMIND_ROLE
+      database:  DATAMIND_DB
+      warehouse: DATAMIND_WH
+      schema:    DBT_DEV
+      threads:   2

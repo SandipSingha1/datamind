@@ -1,0 +1,23 @@
+version: 2
+models:
+  - name: fct_orders
+    description: Order fact table joining orders, customers, and products
+    config:
+      meta:
+        owner: analytics-team
+        domain: commerce
+        sla_minutes: 30
+    columns:
+      - name: order_id
+        description: Unique order identifier
+        tests: [unique, not_null]
+      - name: total_amount
+        description: Net order value in USD
+
+  - name: mart_revenue
+    description: Monthly revenue aggregated by region and customer segment
+    config:
+      meta:
+        owner: analytics-team
+        domain: finance
+        sla_minutes: 60

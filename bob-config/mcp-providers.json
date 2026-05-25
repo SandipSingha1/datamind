@@ -1,0 +1,12 @@
+{
+  "providers": [
+    {
+      "name": "datamind",
+      "description": "DataMind: AI Data Intelligence for Snowflake + dbt + Neo4j. Handles discovery, lineage, model generation, and cost analysis.",
+      "endpoint": "http://localhost:8001/mcp",
+      "tools_endpoint": "http://localhost:8001/mcp/tools",
+      "auth": { "type": "none" },
+      "timeout_ms": 45000
+    }
+  ]
+}

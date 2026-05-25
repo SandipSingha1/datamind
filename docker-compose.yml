@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  neo4j:
+    image: neo4j:5.15
+    container_name: neo4j-datamind
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/datamind_pass
+      NEO4J_PLUGINS: '["apoc"]'
+    volumes:
+      - neo4j_data:/data
+    restart: unless-stopped
+
+  knowledge_svc:
+    build: ./datamind_knowledge_svc
+    container_name: datamind-knowledge
+    ports:
+      - "8002:8002"
+    env_file: .env
+    depends_on:
+      - neo4j
+    restart: unless-stopped
+
+  core:
+    build: ./datamind_core
+    container_name: datamind-core
+    ports:
+      - "8001:8001"
+    env_file: .env
+    environment:
+      KNOWLEDGE_SVC_URL: http://knowledge_svc:8002
+    depends_on:
+      - knowledge_svc
+    restart: unless-stopped
+
+  frontend:
+    build: ./datamind_frontend
+    container_name: datamind-frontend
+    ports:
+      - "8050:8050"
+    env_file: .env
+    environment:
+      CORE_URL: http://core:8001
+      KNOWLEDGE_URL: http://knowledge_svc:8002
+    depends_on:
+      - core
+    restart: unless-stopped
+
+volumes:
+  neo4j_data:

@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: raw
+    database: DATAMIND_DB
+    schema: RAW
+    tables:
+      - name: ORDERS
+        description: Raw orders from the transactional system
+      - name: CUSTOMERS
+        description: Raw customer master data
+      - name: PRODUCTS
+        description: Raw product catalogue
